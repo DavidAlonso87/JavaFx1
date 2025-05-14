@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Pos?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AuthTabController" spacing="10" alignment="CENTER">
+    <Label text="Autenticación del Empleado" />
+
+    <TextField fx:id="usernameField" promptText="Usuario" />
+    <PasswordField fx:id="passwordField" promptText="Contraseña" />
+
+    <Button fx:id="saveButton" text="Guardar" onAction="#handleSave" />
+
+    <Label fx:id="errorLabel" textFill="red" visible="false" />
+</VBox>

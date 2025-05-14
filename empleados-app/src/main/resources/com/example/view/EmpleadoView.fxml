@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.controller.EmpleadoController"
+            prefWidth="540" prefHeight="360">
+
+    <children>
+        
+        <!-- Tabla de empleados -->
+        <TableView fx:id="empleadoTable"
+                   layoutX="14.0" layoutY="14.0"
+                   prefHeight="250.0" prefWidth="250.0">
+            <columns>
+                <TableColumn fx:id="idColumn"
+                             text="ID"
+                             prefWidth="50.0"/>
+                <TableColumn fx:id="nombreColumn"
+                             text="Nombre"
+                             prefWidth="200.0"/>
+                <TableColumn fx:id="departamentoColumn"
+                             text="Departamento"
+                             prefWidth="262.0"/>
+            </columns>
+        </TableView>
+
+        <!-- Botones de acciones -->
+        <Button text="Crear"
+                fx:id="crearEmpleadoButton"
+                onAction="#handleCrearEmpleado"
+                layoutX="14.0" layoutY="270.0"/>
+        <Button text="Editar"
+                fx:id="editarEmpleadoButton"
+                onAction="#handleEditarEmpleado"
+                layoutX="100.0" layoutY="270.0"/>
+        <Button text="Eliminar"
+                fx:id="eliminarEmpleadoButton"
+                onAction="#handleEliminarEmpleado"
+                layoutX="190.0" layoutY="270.0"/>
+
+        <!-- Formulario para crear/editar empleado -->
+        <GridPane layoutX="14.0" layoutY="310.0"
+                  hgap="10.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="100.0"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Fila 0: Nombre -->
+            <Label text="Nombre:"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="0"/>
+            <TextField fx:id="nombreField"
+                       promptText="Nombre"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="1"/>
+
+            <!-- Fila 1: Departamento -->
+            <Label text="Departamento:"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="0"/>
+            <TextField fx:id="departamentoField"
+                       promptText="Departamento"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="1"/>
+
+            <!-- Fila 2: Guardar cambios -->
+            <Button text="Guardar cambios"
+                    onAction="#handleGuardarEmpleado"
+                    GridPane.rowIndex="2"
+                    GridPane.columnIndex="1"
+                    GridPane.halignment="RIGHT"/>
+        </GridPane>
+    </children>
+</AnchorPane>

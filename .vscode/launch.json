@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug (Launch) Main",
+      "request": "launch",
+      "mainClass": "com.example.Main",
+      "vmArgs": "--module-path \"C:\\javafx-sdk-17\\lib\" --add-modules javafx.controls,javafx.fxml",
+      "env": {
+        "PATH_TO_FX": "C:\\javafx-sdk-17\\lib"
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/empleados-app",
+      "sourcePaths": [
+        "src/main/java"
+      ],
+      "outputPath": "target/classes"
+    }
+  ]
+}

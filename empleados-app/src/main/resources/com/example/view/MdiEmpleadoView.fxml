@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.example.controller.MdiEmpleadoController"
+    prefWidth="800" prefHeight="600">
+
+
+    <TableView fx:id="empleadoTable" layoutX="0" layoutY="0" prefWidth="600" prefHeight="300">
+
+
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="200" />
+            <TableColumn fx:id="departamentoColumn" text="Departamento" prefWidth="350" />
+        </columns>
+    </TableView>
+
+
+    <!-- CONTENEDOR MDI, Aqui configuramos los margenes de la tabla -->
+    <AnchorPane fx:id="mdiRoot"
+        layoutX="20" layoutY="40"
+        prefWidth="240" prefHeight="400" />
+
+
+    <!-- BOTONES en la parte inferior, centrados y con espacio -->
+    <HBox spacing="20" AnchorPane.bottomAnchor="20"
+        AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"
+        alignment="CENTER">
+        <Button text="Mostrar Tabla" onAction="#onShowTable" />
+        <Button text="Crear" onAction="#onNuevoEmpleado" />
+        <Button text="Editar" onAction="#onEditarEmpleado" />
+        <Button text="Eliminar" onAction="#onEliminarEmpleado" />
+    </HBox>
+</AnchorPane>

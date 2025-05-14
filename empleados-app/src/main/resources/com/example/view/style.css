@@ -1,0 +1,197 @@
+/* Contenedor general */
+.window {
+  -fx-background-color: white;
+  -fx-border-color: #ccc;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2);
+}
+
+/* CABECERA */
+.window-header {
+  -fx-background-color: linear-gradient(to bottom, #c93737, #e8e8e8);
+  -fx-padding: 4 8;
+  -fx-spacing: 6;
+}
+.window-icon {
+  -fx-opacity: 0.8;
+}
+.window-title {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
+}
+.window-button {
+  -fx-background-color: transparent;
+  -fx-font-size: 12px;
+  -fx-text-fill: #666;
+  -fx-padding: 2 6;
+}
+.window-button:hover {
+  -fx-background-color: #e74c3c;
+  -fx-text-fill: white;
+}
+
+/* CONTENIDO (tabla) */
+.window-content {
+  -fx-border-color: transparent;
+}
+
+/* PIE (barra de acciones) */
+.window-footer {
+  -fx-background-color: transparent;
+  -fx-padding: 8 0;
+}
+.action-button {
+  -fx-background-color: #4285f4;
+  -fx-text-fill: white;
+  -fx-padding: 6 12;
+  -fx-background-radius: 4px;
+}
+.action-button:hover {
+  -fx-background-color: #3071e7;
+}
+
+
+/* ---------------------------------------------------
+   Estilos para el formulario "Crear Empleado"
+   --------------------------------------------------- */
+   .create-form {
+    -fx-background-color: #f0f8ff;        /* fondo azul muy claro */
+    -fx-padding: 16px;                    /* separación interior */
+    -fx-background-radius: 8px;           /* bordes redondeados */
+    -fx-border-color: #4a90e2;            /* borde azul */
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+  }
+  
+  /* Etiquetas dentro del form */
+  .create-form .label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #e94505;
+  }
+  
+  /* Campos de texto dentro del form */
+  .create-form .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+  }
+  
+  /* Botón Guardar dentro del form */
+  .create-form .button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+  }
+  .create-form .button:hover {
+    -fx-background-color: #357abd;
+  }
+  
+
+
+
+
+/* ---------------------------------------------------
+   Ventana “Crear Empleado” (con clase .create-form-window)
+   --------------------------------------------------- */
+
+/* Estilizamos el header de esa ventana */
+.create-form-window .window-header {
+  -fx-background-color: linear-gradient(to bottom, #c70d0d, #f7f7f7);
+}
+
+/* Centramos y pintamos el título de rojo */
+.create-form-window .window-title {
+  -fx-text-fill: rgb(129, 13, 13);           /* texto rojo */
+  -fx-font-size: 15px;          /* mayor tamaño */
+  -fx-font-weight: bold;        /* negrita */
+  -fx-alignment: center;        /* centro horizontal */
+  -fx-max-width: Infinity;          /* para que ocupe todo el ancho del header */
+  _fx-text-overrun: clip;
+}
+
+/* ---------------------------------------------------
+   Encabezado interno “Crear Empleado” dentro del form
+   --------------------------------------------------- */
+   .create-form-content-header {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 6px 0;
+  }
+  
+  .create-form-content-header .label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;   /* centra el texto */
+    -fx-pref-width: 100%;     /* ocupa todo el ancho disponible */
+  }
+  
+
+  /* ---------------------------------------------------
+   Estilos para el formulario "Editar Empleado"
+   --------------------------------------------------- */
+.edit-form {
+  -fx-background-color: #fff0f0;        /* fondo rosado muy claro */
+  -fx-padding: 16px;                    /* separación interior */
+  -fx-background-radius: 8px;           /* bordes redondeados */
+  -fx-border-color: #e94505;            /* borde rojizo */
+  -fx-border-width: 2px;
+  -fx-border-radius: 8px;
+}
+/* Etiquetas dentro del form */
+.edit-form .label {
+  -fx-font-size: 12pt;
+  -fx-text-fill: #e94505;               /* texto rojizo */
+}
+/* Campos de texto dentro del form */
+.edit-form .text-field {
+  -fx-background-color: white;
+  -fx-border-color: #ccc;
+  -fx-border-radius: 4px;
+}
+/* Botón Actualizar dentro del form */
+.edit-form .button {
+  -fx-background-color: #e94505;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-background-radius: 4px;
+}
+.edit-form .button:hover {
+  -fx-background-color: #c9302c;
+}
+
+
+/* ---------------------------------------------------
+   Encabezado interno “Editar Empleado” dentro del form
+   --------------------------------------------------- */
+.edit-form-content-header {
+  -fx-background-color: #f7e8e8;
+  -fx-padding: 6px 0;
+}
+.edit-form-content-header .label {
+  -fx-text-fill: #e94505;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-alignment: center;
+  -fx-pref-width: Infinity;
+  -fx-text-overrun: clip;
+}
+
+
+/* ---------------------------------------------------
+   Ventana “Editar Empleado” (con clase .edit-form-window)
+   --------------------------------------------------- */
+/* Cambiamos el header de la ventana interna */
+.edit-form-window .window-header {
+  -fx-background-color: linear-gradient(to bottom, #fce4e4, #f5c6cb);
+}
+/* Título sin elipsis y centrado */
+.edit-form-window .window-title {
+  -fx-text-fill: #c9302c;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-alignment: center;
+  -fx-max-width: Infinity;
+  -fx-text-overrun: clip;
+}

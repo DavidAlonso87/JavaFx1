@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import org.dockfx.DockPane?>
+<?import org.dockfx.DockNode?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<!--
+  Vista FXML usando DockFX:
+  - Panel izquierdo con tres DockNodes: "Crear Empleado", "Editar Empleado" y "Eliminar Empleado"
+agrupados en pestañas.
+  - Panel derecho con DockNode "Empleados" mostrando la tabla.
+-->
+<DockPane fx:id="dockPane"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.example.controller.DockfxEmpleadoController">
+
+
+    <VBox fx:id="crearContainer" spacing="10" alignment="TOP_LEFT" padding="10">
+        <Label text="Nombre:" />
+        <TextField fx:id="crearNombre" />
+        <Label text="Departamento:" />
+        <TextField fx:id="crearDepartamento" />
+        <Button text="Guardar" onAction="#onGuardarEmpleado" />
+    </VBox>
+
+    <!-- Contenedor “Editar” -->
+    <VBox fx:id="editarContainer" spacing="10" alignment="TOP_LEFT" padding="10">
+        <Label text="Seleccione empleado a editar:" />
+        <TableView fx:id="editarTable" prefHeight="200" />
+        <Label text="Nombre:" />
+        <TextField fx:id="editarNombre" />
+        <Label text="Departamento:" />
+        <TextField fx:id="editarDepartamento" />
+        <Button text="Confirmar" onAction="#onConfirmarEditarEmpleado" />
+    </VBox>
+
+    <!-- Contenedor “Eliminar” -->
+    <VBox fx:id="eliminarContainer" spacing="10" alignment="TOP_LEFT" padding="10">
+        <Label text="Seleccione empleado a eliminar:" />
+        <TableView fx:id="eliminarTable" prefHeight="200" />
+        <Button text="Eliminar" onAction="#onEliminarEmpleado" />
+    </VBox>
+
+    <!-- Contenedor “Empleados” (tabla principal) -->
+    <VBox fx:id="empleadosContainer">
+        <TableView fx:id="empleadoTable" />
+    </VBox>
+
+
+</DockPane>

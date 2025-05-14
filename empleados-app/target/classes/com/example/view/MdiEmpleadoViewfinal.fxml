@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.221"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.example.controller.MdiEmpleadoFinalController"
+    fx:id="mdiRoot"
+    prefWidth="800" prefHeight="600"
+    AnchorPane.topAnchor="0"
+    AnchorPane.leftAnchor="0"
+    AnchorPane.rightAnchor="0"
+    AnchorPane.bottomAnchor="0"
+>
+
+    <!-- Ventana draggable que agrupa tabla + botones -->
+    <AnchorPane fx:id="empleadoWindow"
+        prefWidth="600" prefHeight="350"
+        AnchorPane.topAnchor="20"
+        AnchorPane.leftAnchor="20">
+
+        <children>
+
+            <!-- Tabla de empleados -->
+            <TableView fx:id="empleadoTable"
+                AnchorPane.topAnchor="20"
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.bottomAnchor="0">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                    <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="200" />
+                    <TableColumn fx:id="departamentoColumn" text="Departamento" prefWidth="350" />
+                </columns>
+            </TableView>
+
+
+        </children>
+
+    </AnchorPane>
+
+    <!-- HBox de botones, anclado abajo y centrado -->
+    <HBox spacing="20"
+        alignment="CENTER"
+        AnchorPane.leftAnchor="20"
+        AnchorPane.rightAnchor="20"
+        AnchorPane.bottomAnchor="20">
+        <Button text="Mostrar Tabla" onAction="#onShowTable" />
+        <Button text="Crear" onAction="#onNuevoEmpleado" />
+        <Button text="Editar" onAction="#onEditarEmpleado" />
+        <Button text="Eliminar" onAction="#onEliminarEmpleado" />
+    </HBox>
+
+
+</AnchorPane>

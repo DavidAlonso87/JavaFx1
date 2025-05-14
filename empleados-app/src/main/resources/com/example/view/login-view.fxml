@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.LoginController" spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+    <Label text="Iniciar sesión" style="-fx-font-size: 24px;" />
+
+    <!-- Campo de texto para el nombre de usuario -->
+    <TextField fx:id="usernameField" promptText="Usuario" />
+
+    <!-- Campo de texto para la contraseña -->
+    <PasswordField fx:id="passwordField" promptText="Contraseña" />
+
+    <!-- Botón de login -->
+    <Button text="Iniciar sesión" onAction="#handleLogin" />
+
+    <!-- Mensaje de error (invisible por defecto) -->
+    <Label fx:id="errorLabel" text="Credenciales incorrectas" style="-fx-text-fill: red;" visible="false" />
+</VBox>

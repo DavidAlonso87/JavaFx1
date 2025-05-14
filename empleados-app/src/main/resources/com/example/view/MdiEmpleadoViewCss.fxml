@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.221"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.example.controller.MdiEmpleadoFinalControllerCss"
+    fx:id="mdiRoot"
+    prefWidth="800" prefHeight="600"
+    stylesheets="@style.css">
+
+    <!-- Ventana draggable -->
+    <AnchorPane fx:id="empleadoWindow"
+        styleClass="window"
+        prefWidth="600" prefHeight="400"
+        AnchorPane.topAnchor="20"
+        AnchorPane.leftAnchor="20">
+        <children>
+            <!-- CABECERA: 30px de alto -->
+            <HBox fx:id="windowHeader"
+                styleClass="window-header"
+                AnchorPane.topAnchor="0"
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0"
+                prefHeight="30"
+                alignment="CENTER_LEFT"
+                spacing="8">
+                <ImageView fx:id="windowIcon" />
+                <Label fx:id="windowTitle"
+                    text="Tabla de Empleados"
+                    styleClass="window-title" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnMinimize" text="—" styleClass="window-button" />
+                <Button fx:id="btnMaximize" text="▢" styleClass="window-button" />
+                <Button fx:id="btnClose" text="✕" styleClass="window-button" />
+            </HBox>
+
+            <!-- TABLA: desde 30px hasta el fondo del pane -->
+            <TableView fx:id="empleadoTable"
+                styleClass="window-content"
+                AnchorPane.topAnchor="30"
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.bottomAnchor="0">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                    <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="200" />
+                    <TableColumn fx:id="departamentoColumn" text="Departamento" prefWidth="350" />
+                </columns>
+            </TableView>
+        </children>
+    </AnchorPane>
+
+    <!-- BARRA DE BOTONES siempre visible fuera de la ventana interna -->
+    <HBox fx:id="actionBar"
+        styleClass="window-footer"
+        spacing="20"
+        alignment="CENTER"
+        AnchorPane.leftAnchor="0"
+        AnchorPane.rightAnchor="0"
+        AnchorPane.bottomAnchor="10"
+        prefHeight="50">
+        <Button text="Mostrar Tabla" onAction="#onShowTable" styleClass="action-button" />
+        <Button text="Crear" onAction="#onNuevoEmpleado" styleClass="action-button" />
+        <Button text="Editar" onAction="#onEditarEmpleado" styleClass="action-button" />
+        <Button text="Eliminar" onAction="#onEliminarEmpleado" styleClass="action-button" />
+    </HBox>
+
+</AnchorPane>
