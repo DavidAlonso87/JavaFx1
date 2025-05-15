@@ -3,62 +3,101 @@ package com.example.ui;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
- * Un InternalWindow que ahora:
- * - Ancla el container a sus cuatro lados.
- * - Permite que el body y el content crezcan con PRIORITY.ALWAYS.
+ * InternalWindow: ventana flotante con barra de título,
+ * soporte de arrastre, minimizar, maximizar y cerrar.
  */
 public class InternalWindow extends AnchorPane {
     private double dragOffsetX, dragOffsetY;
+    private boolean maximized = false;
+    private double prevX, prevY, prevW, prevH;
 
     public InternalWindow(String title, Node content) {
-        // 1) Barra de tÃ­tulo
+        // Barra de título
         Label titleLabel = new Label(title);
         titleLabel.getStyleClass().add("window-title");
-        HBox titleBar = new HBox(titleLabel);
+        HBox titleBar = new HBox(5, titleLabel);
         titleBar.getStyleClass().add("window-bar");
         titleBar.setAlignment(Pos.CENTER_LEFT);
         titleBar.setPrefHeight(30);
+        HBox.setHgrow(titleLabel, Priority.ALWAYS);
 
-        // 2) Cuerpo
+        // Botones de ventana
+        Button btnMin = new Button("—");
+        Button btnMax = new Button("?");
+        Button btnClose = new Button("?");
+        btnMin.getStyleClass().add("window-button");
+        btnMax.getStyleClass().add("window-button");
+        btnClose.getStyleClass().add("window-button");
+        titleBar.getChildren().addAll(btnMin, btnMax, btnClose);
+
+        // Contenido de la ventana
         VBox body = new VBox(content);
         body.getStyleClass().add("window-body");
-        // permitir que body crezca dentro de container:
-        VBox.setVgrow(body, Priority.ALWAYS);
+        VBox.setVgrow(content, Priority.ALWAYS);
 
-        // 3) Si el content es un Region (tu AnchorPane FXML), permitirle crecer:
-        if (content instanceof Region) {
-            Region r = (Region) content;
-            // para que no se â€œpegueâ€ a su tamaÃ±o mÃ­nimo
-            r.setMinSize(0, 0);
-            VBox.setVgrow(r, Priority.ALWAYS);
-        }
-
-        // 4) Container que agrupa barra + cuerpo
+        // Container completo (barra + contenido)
         VBox container = new VBox(titleBar, body);
-
-        // 5) Anclar el container a los 4 bordes de este AnchorPane:
         AnchorPane.setTopAnchor(container, 0.0);
         AnchorPane.setBottomAnchor(container, 0.0);
         AnchorPane.setLeftAnchor(container, 0.0);
         AnchorPane.setRightAnchor(container, 0.0);
-
         getChildren().add(container);
 
-        // 6) Arrastar por la ventana
+        // Traer al frente al hacer click
+        addEventFilter(MouseEvent.MOUSE_PRESSED, e -> toFront());
+
+        // Arrastre por la barra de título
         titleBar.setOnMousePressed(this::onMousePressed);
         titleBar.setOnMouseDragged(this::onMouseDragged);
         titleBar.setCursor(Cursor.MOVE);
 
-        // 5) Traer al frente al hacer click en cualquier parte de la ventana
-        this.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> this.toFront());
+        // Minimizar: ocultar ventana
+        btnMin.setOnAction(e -> setVisible(false));
 
-        // 7) Estilo de borde y fondo
-        setStyle("-fx-border-color: gray; -fx-border-width:1; -fx-background-color: white;");
+        // Maximizar/restaurar
+        btnMax.setOnAction(e -> {
+            Region parent = (Region) getParent();
+            if (!maximized) {
+                prevX = getLayoutX();
+                prevY = getLayoutY();
+                prevW = getWidth();
+                prevH = getHeight();
+                setLayoutX(0);
+                setLayoutY(0);
+                setPrefSize(parent.getWidth(), parent.getHeight());
+                maximized = true;
+                btnMax.setText("?");
+            } else {
+                setLayoutX(prevX);
+                setLayoutY(prevY);
+                setPrefSize(prevW, prevH);
+                maximized = false;
+                btnMax.setText("?");
+            }
+        });
+
+        btnClose.setOnAction(e -> {
+            Node p = getParent();
+            if (p instanceof Pane) {
+                ((Pane) p).getChildren().remove(this);
+            }
+        });
+        // Estilo de borde y fondo
+        setStyle(
+                "-fx-border-color: gray; " +
+                        "-fx-border-width:1; " +
+                        "-fx-background-color: white;");
     }
 
     private void onMousePressed(MouseEvent ev) {

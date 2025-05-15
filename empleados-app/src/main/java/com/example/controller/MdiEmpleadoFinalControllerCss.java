@@ -91,9 +91,7 @@ public class MdiEmpleadoFinalControllerCss implements Initializable {
         cargarEmpleados();
 
         // Crear ventana interna
-        tableWindow = new InternalWindow("", empleadoWindow);
-        tableWindow.setPrefSize(600, 400);
-        tableWindow.relocate(20, 20);
+        crearWindow();
 
         // Restaurar posición/tamaño/estado
         tablePrefs.apply(tableWindow, () -> {
@@ -120,6 +118,12 @@ public class MdiEmpleadoFinalControllerCss implements Initializable {
         tableWindow.prefHeightProperty().addListener((o, ov, nv) -> tablePrefs.save(tableWindow, maximized));
     }
 
+    private void crearWindow() {
+        tableWindow = new InternalWindow("", empleadoWindow);
+        tableWindow.setPrefSize(600, 400);
+        tableWindow.relocate(10, 10);
+    }
+
     private void cargarEmpleados() {
         Task<ObservableList<Empleado>> task = empleadoService.obtenerEmpleados();
         task.setOnSucceeded(evt -> empleadoTable.setItems(task.getValue()));
@@ -144,13 +148,7 @@ public class MdiEmpleadoFinalControllerCss implements Initializable {
         HBox headerBox = FormHeaderHelper.createHeader(
                 "Crear Empleado", "create-form-content-header");
 
-        VBox form = new VBox(10,
-                headerBox,
-                new Label("Nombre:"), nombreInput,
-                new Label("Departamento:"), deptoInput,
-                guardarBtn);
-        form.setPrefSize(300, 300);
-        form.getStyleClass().add("create-form");
+        VBox form = getForm(nombreInput, deptoInput, guardarBtn, headerBox);
 
         InternalWindow win = new InternalWindow("Crear Empleado", form);
         win.getStyleClass().add("create-form-window");
@@ -202,6 +200,17 @@ public class MdiEmpleadoFinalControllerCss implements Initializable {
                     "Error al crear: " + crear.getException().getMessage()).showAndWait());
             new Thread(crear).start();
         });
+    }
+
+    private VBox getForm(TextField nombreInput, TextField deptoInput, Button guardarBtn, HBox headerBox) {
+        VBox form = new VBox(10,
+                headerBox,
+                new Label("Nombre:"), nombreInput,
+                new Label("Departamento:"), deptoInput,
+                guardarBtn);
+        form.setPrefSize(300, 300);
+        form.getStyleClass().add("create-form");
+        return form;
     }
 
     @FXML

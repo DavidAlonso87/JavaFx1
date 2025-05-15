@@ -21,10 +21,10 @@
   -fx-text-fill: #333;
 }
 .window-button {
-  -fx-background-color: transparent;
+  -fx-background-color: rgb(228, 47, 47);
   -fx-font-size: 12px;
-  -fx-text-fill: #666;
-  -fx-padding: 2 6;
+  -fx-text-fill: #e6e6e6;
+  -fx-padding: 4 8;
 }
 .window-button:hover {
   -fx-background-color: #e74c3c;

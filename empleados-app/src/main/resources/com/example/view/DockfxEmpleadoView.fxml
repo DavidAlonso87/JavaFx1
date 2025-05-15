@@ -1,53 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import org.dockfx.DockPane?>
-<?import org.dockfx.DockNode?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
 
 <!--
   Vista FXML usando DockFX:
-  - Panel izquierdo con tres DockNodes: "Crear Empleado", "Editar Empleado" y "Eliminar Empleado"
-agrupados en pestañas.
-  - Panel derecho con DockNode "Empleados" mostrando la tabla.
+  - Se usan VBoxes en lugar de DockNode en el FXML.
+  - Los DockNode se crean dinámicamente en el controlador.
+-->
+
+
+<!--
+  Vista DockFX reconfigurada:
+  - Columna izquierda (30%): navegación con botones.
+  - Centro (50%): tabla de empleados.
+  - Derecha (20%): acciones (abrir formularios como InternalWindow).
 -->
 <DockPane fx:id="dockPane"
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="com.example.controller.DockfxEmpleadoController">
 
+    <children>
 
-    <VBox fx:id="crearContainer" spacing="10" alignment="TOP_LEFT" padding="10">
-        <Label text="Nombre:" />
-        <TextField fx:id="crearNombre" />
-        <Label text="Departamento:" />
-        <TextField fx:id="crearDepartamento" />
-        <Button text="Guardar" onAction="#onGuardarEmpleado" />
-    </VBox>
+        <!-- NAV (30%) -->
+        <VBox fx:id="navContainer" spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="10" right="5" bottom="10" left="5" />
+            </padding>
+            <Button fx:id="btnNavEmpleados" text="Empleados" onAction="#onNavEmpleados" />
+            <Button fx:id="btnNavUsuarios" text="Usuarios" onAction="#onNavUsuarios" />
+            <Button fx:id="btnNavProductos" text="Productos" onAction="#onNavProductos" />
+            <Button fx:id="btnNavSalir" text="Salir" onAction="#onNavSalir" />
+        </VBox>
 
-    <!-- Contenedor “Editar” -->
-    <VBox fx:id="editarContainer" spacing="10" alignment="TOP_LEFT" padding="10">
-        <Label text="Seleccione empleado a editar:" />
-        <TableView fx:id="editarTable" prefHeight="200" />
-        <Label text="Nombre:" />
-        <TextField fx:id="editarNombre" />
-        <Label text="Departamento:" />
-        <TextField fx:id="editarDepartamento" />
-        <Button text="Confirmar" onAction="#onConfirmarEditarEmpleado" />
-    </VBox>
-
-    <!-- Contenedor “Eliminar” -->
-    <VBox fx:id="eliminarContainer" spacing="10" alignment="TOP_LEFT" padding="10">
-        <Label text="Seleccione empleado a eliminar:" />
-        <TableView fx:id="eliminarTable" prefHeight="200" />
-        <Button text="Eliminar" onAction="#onEliminarEmpleado" />
-    </VBox>
-
-    <!-- Contenedor “Empleados” (tabla principal) -->
-    <VBox fx:id="empleadosContainer">
-        <TableView fx:id="empleadoTable" />
-    </VBox>
+        <!-- TABLA (50%) -->
+        <VBox fx:id="tableContainer" spacing="0" alignment="TOP_LEFT">
+            <!-- permitimos que el TableView crezca para ocupar todo el VBox -->
+            <TableView fx:id="empleadoTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150" />
+                    <TableColumn fx:id="colDepartamento" text="Departamento" prefWidth="150" />
+                </columns>
+            </TableView>
+        </VBox>
 
 
+        <!-- ACCIONES (20%) -->
+        <VBox fx:id="actionsContainer" spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="10" right="5" bottom="10" left="5" />
+            </padding>
+            <Button fx:id="btnCrear" text="Crear" onAction="#onCrearEmpleado" />
+            <Button fx:id="btnEditar" text="Editar" onAction="#onEditarEmpleado" />
+            <Button fx:id="btnEliminar" text="Eliminar" onAction="#onEliminarEmpleado" />
+        </VBox>
+    </children>
 </DockPane>

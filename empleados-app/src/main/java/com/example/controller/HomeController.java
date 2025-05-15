@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+
 import java.io.IOException;
 
 public class HomeController {
@@ -15,18 +17,27 @@ public class HomeController {
     @FXML
     private void handleEmpleados(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/view/MdiEmpleadoViewCss.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Tabla de empleados"); // Aqui fijas el nuevo titulo
+            // 1) Carga el FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/view/DockfxEmpleadoView.fxml"));
+            Parent root = loader.load();
 
-            // --- Aquí fijamos tamaño relativo de ventana (por ejemplo 50% x 60% de
-            // pantalla) ---
+            // 2) Calcula un tamaño razonable (por ejemplo 80% ancho x 70% alto)
             Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            stage.setWidth(bounds.getWidth() * 0.5);
-            stage.setHeight(bounds.getHeight() * 0.6);
-            stage.centerOnScreen();
+            double w = bounds.getWidth() * 0.8;
+            double h = bounds.getHeight() * 0.7;
+
+            // 3) Escena con ese tamaño
+            Scene scene = new Scene(root, w, h);
+
+            // 4) Nueva Stage para Empleados
+            Stage empStage = new Stage();
+            empStage.setTitle("Gestión de Empleados");
+            empStage.setScene(scene);
+            empStage.centerOnScreen();
+            empStage.show();
+
+            // 5) Cierra la ventana de login
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
         } catch (IOException e) {
             e.printStackTrace();

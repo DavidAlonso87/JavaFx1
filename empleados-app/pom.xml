@@ -19,8 +19,16 @@
       <id>scijava-public</id>
       <url>https://maven.scijava.org/content/repositories/public/</url>
     </repository>
+
+
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+
+
   </repositories>
-  
+
   <dependencies>
     <!-- JavaFX -->
     <dependency>
@@ -47,11 +55,10 @@
     </dependency>
 
     <!-- Diseño de vista DOCKFx-->
-
     <dependency>
-      <groupId>org.dockfx</groupId>
+      <groupId>com.github.RobertBColton</groupId>
       <artifactId>DockFX</artifactId>
-      <version>0.1.12</version>
+      <version>master-SNAPSHOT</version>
     </dependency>
 
 
